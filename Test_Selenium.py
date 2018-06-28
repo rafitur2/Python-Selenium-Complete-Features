@@ -6,11 +6,15 @@ from selenium.webdriver.support.ui import Select
 
 wd = webdriver.Chrome()
 
+#Selectors
 gender_xpath = "//input[@name='gender' and @value = 'Male']"
 first_name_id = "firstname"
 female_xpath ="//input[@value='c# ']"
 age_name = "age"
 age_value = "30 to 39"
+link_xpath = "//a[@href='http://www.teachmeselenium.com/teachmeselenium/automation-practice/']"
+
+alert_text_xapth = "//a[contains(text(),'Click Me to get Alert')]"
 
 class TestSelenium(unittest.TestCase):
 
@@ -36,6 +40,17 @@ class TestSelenium(unittest.TestCase):
         #Submit Button: Click Submit
         submit = wd.find_element_by_name("submit")
         submit.click()
+
+        #Link: Click on the link
+        link = wd.find_element_by_xpath(link_xpath)
+        link.click()
+
+        #Alert JS Button: Click on the button and then on JS popup
+        alert_button=wd.find_element_by_xpath(alert_text_xapth)
+        alert_button.click()
+        alert = wd.switch_to.alert()
+        alert.accept()
+
 
 
         time.sleep(2)
